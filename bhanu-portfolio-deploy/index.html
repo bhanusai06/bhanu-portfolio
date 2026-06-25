@@ -2763,13 +2763,25 @@ function snd(){
   })
   .then(data => {
     fm.className="fmsg ok";
-      }
-    })
-    .catch(err => {
-      fm.className="fmsg er";
-      fm.textContent="Network error. Please reach me directly at bhanusai712@gmail.com";
-    });
-  }
+    fm.textContent = data.message || "Message sent successfully!";
+    document.getElementById("cn").value = "";
+    document.getElementById("ce").value = "";
+    document.getElementById("cs").value = "";
+    document.getElementById("cm").value = "";
+  })
+  .catch(err => {
+    console.error("Submission error:", err);
+    // Fallback: If backend is down or not yet deployed, open the mailto client so the user never loses a lead!
+    fm.className="fmsg er";
+    fm.textContent = "Backend unavailable. Opening email client as secure fallback...";
+    
+    setTimeout(() => {
+      const body = "Name: " + n + "\nEmail: " + e + "\n\n" + m;
+      window.location.href = "mailto:bhanusai712@gmail.com?subject=" + encodeURIComponent(s) + "&body=" + encodeURIComponent(body);
+      fm.className="fmsg ok";
+      fm.textContent = "Mail client opened. Feel free to contact me at bhanusai712@gmail.com";
+    }, 1500);
+  });
 }
 </script>
 </body>
