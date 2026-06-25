@@ -6,3 +6,5 @@ Thumbs.db
 # Backend files
 backend/node_modules/
 backend/.env
+
+.vercel
