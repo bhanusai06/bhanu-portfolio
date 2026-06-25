@@ -1,0 +1,8 @@
+# Root gitignore
+.DS_Store
+Thumbs.db
+*.log
+
+# Backend files
+backend/node_modules/
+backend/.env
